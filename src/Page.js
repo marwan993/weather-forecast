@@ -40,7 +40,7 @@ const Page = () => {
 
         try {
             const response = await fetch(
-                `${api}${latitude},${longitude}`
+                `${api}${latitude},-${longitude}`
             ).then((res) => res.json());
     
             const forecast = await fetch(response.properties.forecast).then((res) =>
@@ -102,7 +102,7 @@ const Page = () => {
                         id="latitude"
                         name="latitude"
                         value={latitude}
-                        placeholder="Latitude"
+                        placeholder="0.000000000"
                         onChange={(e) =>setLatitude(e.target.value)}
                         />
                         <div
@@ -136,7 +136,7 @@ const Page = () => {
                         id="latitude"
                         name="latitude"
                         value={longitude}
-                        placeholder="Longitude"
+                        placeholder="0.000000000"
                         onChange={(e) =>setLongitude(e.target.value)}
                         />
 
@@ -176,7 +176,6 @@ const Page = () => {
               <a
                 className="text-brand-default"
                 href="https://www.weather.gov/documentation/services-web-api"
-                rel="nopener"
                 target="_blank"
                 rel="noreferrer"
               >
@@ -188,7 +187,7 @@ const Page = () => {
           </div>
           <div>
           <ul className="grid gap-8 md:grid-cols-2 mt-4" style={{listStyle:"none"}}>
-            {serverData.forecast.slice(0, 2).map((item, index) => {
+            {serverData.forecast.map((item, index) => {
               const {
                 name,
                 isDaytime,
@@ -231,7 +230,7 @@ const Page = () => {
                     {shortForecast}
                   </p>
                   <div className="text-md text-gray-500 text-center">
-                    <div>{`Temperature: ${temperature} ${temperatureUnit}`}</div>
+                    <div>{`Temperature: ${temperature} ${temperatureUnit} / ${((temperature - 32 ) * 5 /9).toFixed(0)} C`}</div>
                     <div>{`Wind: ${windSpeed} ${windDirection}`}</div>
                   </div>
                 </li>
