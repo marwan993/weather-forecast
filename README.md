@@ -17,7 +17,7 @@ You may also see any lint errors in the console.
 ....... Notes .......
 
 1- I have used Bootstrap for styling, fetch method for retreiving data from the API.
-Yarn for running the project on server.
+Yarn as a package manager for running the project on server.
 
 2-The source of Forms.js is included in the comment of the file
 
